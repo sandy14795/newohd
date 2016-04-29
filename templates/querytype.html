@@ -1,0 +1,109 @@
+{% extends "base1.html" %}
+{% load staticfiles %}
+
+{% block title %}Select |Thapar University{%  endblock %}
+
+{% block head %}
+    <meta charset="UTF-8">
+
+    <link href="{% static 'css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'css/querytype.css' %}" rel="stylesheet">
+
+    <style>
+h1
+{
+    margin: 50px auto;
+    text-align: center;
+    text-shadow: -1px -1px 0px rgba(255,255,255,0.3), 1px 1px 0px rgba(0,0,0,0.8);
+    color: #333;
+    opacity: 0.4;
+    font: 700 80px 'Bitter';
+    
+}
+    </style>
+{% endblock %}
+
+
+{% block body %}
+{% if user.is_authenticated %}
+<div class="container-fluid">
+<div class="row">
+    <div class="col-xs-2 col-xs-offset-5">
+
+    
+
+  
+    <a href="{% url 'plcmntqueryask' %}"><img src="{% static 'img/placements.png' %}" class="img-responsive center-block" ><p class="text-center"> P L A C E M E N T S </p><div class="tool-tip slideIn top">Placements</div></a>
+    
+   
+
+    </div>
+    
+</div>
+
+<div class="row">
+    <div class="col-xs-2 col-xs-offset-2">
+    <a href="{% url 'admqueryask' %}"><img src="{% static 'img/admission4.png' %}" class="img-responsive center-block"><p class="text-center"> A D M I S S I O N S </p> <div class="tool-tip slideIn left">Admissions</div></a>
+    </div>
+    
+     <div class="col-xs-2 col-xs-offset-4">
+    <a href="#"><img src="{% static 'img/hostels2.png' %}" class="img-responsive center-block"><p class="text-center">H O S T E L S </p><div class="tool-tip slideIn right">Hostels</div></a>
+    </div>
+
+</div>
+
+<br><br><br><br>
+<div class="row">
+    <div class="col-xs-2 col-xs-offset-2">
+    <a href="#"><img src="{% static 'img/society.png' %}" class="img-responsive center-block"><p class="text-center"> S O C I E T I E S </p><div class="tool-tip slideIn left">Societies</div></a>
+    </div>
+
+     <div class="col-xs-2 col-xs-offset-4">
+    <a href="#"><img src="{% static 'img/acad.png' %}" class="img-responsive center-block"><p class="text-center"> A C A D E M I C S </p><div class="tool-tip slideIn right">Academics</div></a>
+    </div>
+    
+</div>
+
+<div class="row">
+    <div class="col-xs-2 col-xs-offset-5">
+    <a href="#"><img src="{% static 'img/other.png' %}" class="img-responsive center-block"><p class="text-center"> O T H E R S </p><div class="tool-tip slideIn bottom">Others</div></a>
+    </div>
+    
+</div>
+
+</div>
+
+
+<br>
+<br><br><br><br>
+{% else %}
+
+<div class="row">
+<div class="col-xs-4 col-xs-offset-1" style="">
+
+<h1> Make Effort
+To ASK </h1>
+<h4 align="center"> You have to login with your accout to ask/answer any question. If you dont have any account you can register with us.</h4> 
+</div>
+
+<div class="col-xs-2 col-xs-offset-4">
+<div class="cont" style="background-color: #FFFACD; height: 400px; text-align: center;">
+<br>
+<div class="cont" style="background-color: #FFFACD; height: 350px; margin-left: 5%; margin-right: 5%; text-align: center;">
+
+
+                
+                <a href="{% url 'account_login' %}"><span class="glyphicon glyphicon-log-in"></span>&nbsp;SIGN IN</a>
+                <hr>
+                <a href="{% url 'account_signup' %}"><span class="glyphicon glyphicon-glass"></span>&nbsp;REGISTER</a>
+                <hr>
+                
+                <a href="{% url 'query' %}" ><span class="glyphicon glyphicon-bullhorn"></span> Ask Question </a>
+                <hr>
+                </div>
+</div>
+</div>
+</div>
+
+{% endif %}
+{% endblock %}

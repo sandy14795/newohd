@@ -1,0 +1,63 @@
+{% extends "base1.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}Placements |Thapar University{%  endblock %}
+
+{% block head %}
+    <meta charset="UTF-8">
+
+    <link href="{% static 'css/home.css' %}" rel="stylesheet">
+
+    <style>
+h1
+{
+	margin: 50px auto;
+	text-align: center;
+	text-shadow: -1px -1px 0px rgba(255,255,255,0.3), 1px 1px 0px rgba(0,0,0,0.8);
+	color: #333;
+	opacity: 0.4;
+	font: 700 80px 'Bitter';
+    
+}
+    </style>
+{% endblock %}
+
+
+{% block head_extra %}
+{{ form.media }}
+    
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+<div class="col-xs-3 col-xs-offset-1" style="">
+
+<h1> Make Effort
+To ASK </h1>
+<h4 align="center"> Ask anything related to campus placements, semester internships and summer internships etc.</h4> 
+</div>
+<div class="col-xs-4 col-xs-offset-3">
+<form method="POST" action=''>{% csrf_token %}
+{{ form|crispy }}<small> Tags will help others to search your query easily </small>
+&nbsp;
+<input type="submit" value="Submit" class="btn btn-default">
+</form>
+</div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

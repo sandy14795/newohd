@@ -1,0 +1,230 @@
+{% extends "base1.html" %}
+{% load staticfiles %}
+
+{% block title %}OHD |Thapar University{%  endblock %}
+
+{% block head %}
+    <meta charset="UTF-8">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+    <link href="{% static 'css/home.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+
+{% block body %}
+
+
+
+<div class="col-xs-7 col-xs-offset-1">
+
+  <ul class="nav nav-tabs nav-justified">
+    
+    <li role="presentation" ><a href="#lat" aria-controls="lat" role="tab" data-toggle="tab"><span  aria-hidden="true"></span> Latest</a></li>
+    <li role="presentation" class="active"><a href="#adm" aria-controls="adm" role="tab" data-toggle="tab"><span  aria-hidden="true"></span> Admissions </a></li>
+    <li role="presentation" ><a href="#plac" aria-controls="plac" role="tab" data-toggle="tab"><span  aria-hidden="true"></span> Placements </a></li>
+    <li role="presentation" ><a href="#host" aria-controls="host" role="tab" data-toggle="tab"> <span  aria-hidden="true"></span>Hostels</a></li>
+    <li role="presentation"><a href="#acad" aria-controls="acad" role="tab" data-toggle="tab"><span  aria-hidden="true"></span> Academics </a></li>
+    <li role="presentation"><a href="#soc" aria-controls="soc" role="tab" data-toggle="tab"> <span  aria-hidden="true"></span>Societies </a></li>
+    <li role="presentation"><a href="#other" aria-controls="other" role="tab" data-toggle="tab"><span  aria-hidden="true"></span> Others </a></li>
+  </ul>
+  <br/>
+
+
+<div class="tab-content">
+
+
+<div  role="tabpanel" class="tab-pane active" id="adm">
+
+{% if query %}
+  {% for q in query %}
+  <div class="row">
+  <div class="col-sm-1 ans"><small><div class="ques">{{ q.answers.count }}</div>Answers</small></div>
+  <div class="col-sm-1 ans"><small><div class="ques">3</div>Views</small></div>
+  <p>
+     <a class="ques" href="{% url 'admquerydetail' id=q.id %}">{{ q.title }}</a>
+    <br/>
+    <!-- {% for tag in question.tags.all %}
+    <a href="/tag/{{ tag.slug|slugify }}/"><tag>{{ tag.slug }}</tag></a>
+    {% endfor %} -->
+    <small> {{ q.timestamp|timesince}} ago</small>
+  </p>
+</div>
+<hr>
+  {% endfor %}
+
+{% endif %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if query.has_previous %}
+           <a href="?page={{ query.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ query.number }} of {{ query.paginator.num_pages }}.
+        </span>
+
+        {% if query.has_next %} 
+            <a href="?page={{ query.next_page_number }}">next</a> 
+        {% endif %}
+        | <a href="{% url 'admquerylist' %}">see all </a>
+    </span>
+</div>
+
+
+</div>
+
+
+
+
+<div role="tabpanel" class="tab-pane" id="plac">
+
+{% if queryplc %}
+  {% for q in queryplc %}
+  <div class="row">
+  <div class="col-sm-1 ans"><small><div class="ques">{{ q.answers.count }}</div>Answers</small></div>
+  <div class="col-sm-1 ans"><small><div class="ques">{{ q.views }}</div>Views</small></div>
+  <p>
+     <a class="ques" href="{% url 'plcmntquerydetail' id=q.id %}">{{ q.title }}</a>
+    <br/>
+    <!-- {% for tag in question.tags.all %}
+    <a href="/tag/{{ tag.slug|slugify }}/"><tag>{{ tag.slug }}</tag></a>
+    {% endfor %} -->
+    <small> {{ q.timestamp|timesince}} ago</small>
+  </p>
+</div>
+<hr>
+  {% endfor %}
+
+{% endif %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if queryplc.has_previous %}
+           <a href="?page={{ queryplc.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ queryplc.number }} of {{ queryplc.paginator.num_pages }}.
+        </span>
+
+        {% if queryplc.has_next %} 
+            <a href="?page={{ queryplc.next_page_number }}">next</a> 
+        {% endif %}
+        | <a href="{% url 'plcmntquerylist' %}">see all </a>
+    </span>
+</div>
+
+
+  </div>
+
+
+<div role="tabpanel" class="tab-pane" id="soc">
+<div class="row">
+  <div class="col-sm-1 ans"><small><div class="ques"></div>Answers2</small></div>
+  <div class="col-sm-1 ans"><small><div class="ques"></div>Views2</small></div>
+  </div>
+<hr>
+  </div>
+
+  <div role="tabpanel" class="tab-pane" id="host">
+<div class="row">
+  <div class="col-sm-1 ans"><small><div class="ques"></div>Answers3</small></div>
+  <div class="col-sm-1 ans"><small><div class="ques"></div>Views3</small></div>
+  </div>
+<hr>
+  </div>
+
+
+  <div role="tabpanel" class="tab-pane" id="acad">
+<div class="row">
+  <div class="col-sm-1 ans"><small><div class="ques"></div>Answers4</small></div>
+  <div class="col-sm-1 ans"><small><div class="ques"></div>Views4</small></div>
+  </div>
+<hr>
+  </div>
+
+
+  <div role="tabpanel" class="tab-pane" id="other">
+<div class="row">
+  <div class="col-sm-1 ans"><small><div class="ques"></div>Answers5</small></div>
+  <div class="col-sm-1 ans"><small><div class="ques"></div>Views5</small></div>
+  </div>
+<hr>
+  </div>
+
+
+  <div role="tabpanel" class="tab-pane" id="lat">
+<div class="row">
+  <div class="col-sm-1 ans"><small><div class="ques"></div>Answers6</small></div>
+  <div class="col-sm-1 ans"><small><div class="ques"></div>Views6</small></div>
+  </div>
+<hr>
+  </div>
+
+
+
+</div>
+</div>
+
+<div class="row">
+
+
+<div class="col-xs-2 col-xs-offset-1">
+
+<h3>{{ count }} <small> Questions </small> </h3>
+
+
+</div>
+
+
+<div class="col-xs-2 col-xs-offset-1">
+<div class="cont" style="background-color: #FFFACD; height: 400px; text-align: center;">
+<br>
+<div class="cont" style="background-color: #FFFACD; height: 350px; margin-left: 5%; margin-right: 5%; text-align: center;">
+
+{% if user.is_authenticated %}
+<img src="{% static 'img/user.png' %}" class="img-responsive center-block" >
+
+<small>{{ user.username }} </small>
+<hr>
+<a href="#"> <span class="glyphicon glyphicon-user"></span>&nbsp;My Profile </a> |&nbsp; 
+              <a href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a> 
+              <hr>
+
+              <a href="#" ><span class="glyphicon glyphicon-th-list"></span> My Questions </a>
+              <hr>
+                {% else %}
+                
+                <a href="{% url 'account_login' %}"><span class="glyphicon glyphicon-log-in"></span>&nbsp;SIGN IN</a>
+                <hr>
+                <a href="{% url 'account_signup' %}"><span class="glyphicon glyphicon-glass"></span>&nbsp;REGISTER</a>
+                <hr>
+                {% endif %}
+                <a href="{% url 'query' %}" ><span class="glyphicon glyphicon-bullhorn"></span> Ask Question </a>
+                <hr>
+ </div>
+</div>
+<br><br>
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Recent Tags</h3>
+    </div>
+    <div class="panel-body">
+      {% for q in query2 %}
+      {% for tagt in q.tags.all %}
+      <a href="{% url 'tagt' tag=tagt.slug %}"><tag>{{ tagt.slug }}</tag></a>
+      {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+</div></div>
+
+{% endblock %}

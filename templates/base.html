@@ -1,0 +1,87 @@
+{% load staticfiles %}
+
+<html>
+  <head>
+    <title>{% block head_title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href='{% static "css/2.css" %}' rel="stylesheet">
+    <link href="{%  static 'css/base.css' %}" rel="stylesheet">
+    {% block extra_head %}
+    {% endblock %}
+
+
+    {% block head_extra %}
+    
+    {% endblock %}
+    
+  </head>
+  <body>
+  <div class="topbar"></div>
+<div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header"><a class="navbar-brand" style="font-family: 'Courier New',Courier,monospace;" href="{% url 'home' %}">CAMPUS-QUORA</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse navbar-menubuilder">
+            <ul class="nav navbar-nav navbar-right">
+                
+
+                <li><a href="{% url 'query' %}">ASK QUESTION</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+                {% else %}
+                <li><a href="{% url 'account_login' %}">SIGN IN</a>
+                </li>
+                <li><a href="{% url 'account_signup' %}">REGISTER</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+    {% block body %}
+
+    {% if messages %}
+    <div>
+      <strong>Messages:</strong>
+      <ul>
+	{% for message in messages %}
+	<li>{{message}}</li>
+	{% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    
+<!-- 	{% if user.is_authenticated %}
+	<li><a href="{% url 'account_email' %}">Change E-mail</a></li>
+	<li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+	
+	<li><a href="{% url 'account_login' %}">Sign In</a></li>
+	<li><a href="{% url 'account_signup' %}">Sign Up</a></li> -->
+  <!-- {% endif %} -->
+	
+     
+    {% block content %}
+    {% endblock %}
+    {% endblock %}
+    {% block extra_body %}
+    {% endblock %}
+   <!--  <div id="foot">
+<p> All Rights Reserved </p>
+</div> -->
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{% static 'js/1.js' %}"></script>
+    <script src="{% static 'js/2.js' %}"></script>
+  </body>
+</html>

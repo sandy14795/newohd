@@ -1,0 +1,120 @@
+{% load staticfiles %}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href='{% static "css/2.css" %}' rel="stylesheet">
+    <link href="{%  static 'css/base.css' %}" rel="stylesheet">
+    
+    {% block head %}
+
+
+
+    {% endblock %}
+
+
+
+    {% block head_extra %}
+    
+    {% endblock %}
+
+</head>
+
+
+<body>
+
+
+<div class="topbar"></div>
+<div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header"><a class="navbar-brand" style="font-family: 'Courier New',Courier,monospace;" href="{% url 'home' %}">CAMPUS-QUORA</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse navbar-menubuilder">
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li><a href="{% url 'query' %}">ASK QUESTION</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+                {% else %}
+                <li><a href="{% url 'account_login' %}">SIGN IN</a>
+                </li>
+                <li><a href="{% url 'account_signup' %}">REGISTER</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+{% block body %}
+
+{% endblock %}
+
+<!-- <div class="container">
+<div class="row">
+<div class="col-md-3">
+<div style="background-color: #ffe5ea ">
+
+                
+                
+                
+                {% if user.is_authenticated %}
+                {{ user.username }}
+                <br/>
+                <a href="#">MY PROFILE</a>
+                <br/>
+                
+                <a href="#">MY QUESTIONS</a>
+                
+                
+                
+                {% endif %}
+            
+</div>
+</div></div>
+</div> -->
+
+
+
+<!-- <div id="foot">
+<p> All Rights Reserved </p>
+</div> -->
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{% static 'js/1.js' %}"></script>
+    <script src="{% static 'js/2.js' %}"></script>
+
+    <script type="text/javascript">
+    
+$(document).ready(function(){
+    
+    $(".comment-reply-btn").click(function(event){
+        event.preventDefault();
+        $(this).parent().next(".answer-reply").fadeToggle();
+
+       });
+
+
+
+
+
+
+
+
+
+});
+    </script>
+</body>
+</html>
